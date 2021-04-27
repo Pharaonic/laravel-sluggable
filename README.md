@@ -27,6 +27,7 @@ $ composer require pharaonic/laravel-sluggable
 - [Create a slug column on the table](#CS)
 - [Sluggable with the model](#US)
 - [How to use](#HTU)
+- [Blade Directive](#BL)
 - [Config Manipulation](#CM)
 <br><br>
 
@@ -83,6 +84,16 @@ echo $article->slug;
 ```
 <br>
 
+<a name="BL"></a>
+
+### Blade directive to generate Slug from String.
+
+```blade
+<h2>@slug('Moamen Eltouny')</h2>
+
+```
+<br>
+
 <a name="CM"></a>
 
 ### Config Manipulation
@@ -106,7 +117,6 @@ return [
 
 ```
 <br><br>
-
 
 
 ## License

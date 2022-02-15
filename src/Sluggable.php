@@ -46,6 +46,16 @@ trait Sluggable
     }
 
     /**
+     * Getting slug with the key.
+     *
+     * @return string
+     */
+    public function getSlugWithKeyAttribute()
+    {
+        return implode('-', [$this->getKey(), $this->slug]);
+    }
+
+    /**
      * Generate slug for specific record.
      *
      * @param string $string

@@ -52,6 +52,16 @@ trait Sluggable
      */
     public function getSlugWithKeyAttribute()
     {
+        $isTranslatable = substr(__CLASS__, -11) == 'Translation';
+        $class = substr(__CLASS__, 0, -11);
+
+        if ($isTranslatable && class_exists($class)) {
+            $relation = strtolower(class_basename($class));
+            if (method_exists($this, $relation)) {
+                return implode('-', [$this->{$relation}->getKey(), $this->slug]);
+            }
+        }
+
         return implode('-', [$this->getKey(), $this->slug]);
     }
 

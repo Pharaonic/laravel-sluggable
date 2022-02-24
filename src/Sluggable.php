@@ -57,9 +57,9 @@ trait Sluggable
 
         if ($isTranslatable && class_exists($class)) {
             $relation = strtolower(class_basename($class));
-            if (method_exists($this, $relation)) {
-                return implode('-', [$this->{$relation}->getKey(), $this->slug]);
-            }
+
+            if (method_exists($this, $relation))
+                return implode('-', [$this->{$relation . '_id'}, $this->slug]);
         }
 
         return implode('-', [$this->getKey(), $this->slug]);

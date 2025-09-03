@@ -22,6 +22,9 @@
         "laravel/framework": "^12.0",
         "pharaonic/php-slugify": "^2.0"
     },
+    "require-dev": {
+        "orchestra/testbench": "^10.6"
+    },
     "config": {
         "sort-packages": true
     },
@@ -35,6 +38,11 @@
     "autoload": {
         "psr-4": {
             "Pharaonic\\Laravel\\Sluggable\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pharaonic\\Laravel\\Sluggable\\Tests\\": "tests"
         }
     },
     "minimum-stability": "dev",

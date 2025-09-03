@@ -3,15 +3,16 @@
 namespace Pharaonic\Laravel\Sluggable;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 trait Sluggable
 {
-    /**
-     * Sluggable Config List
-     *
-     * @var array
-     */
-    public static $sluggableConfig;
+    // /**
+    //  * Sluggable Config List
+    //  *
+    //  * @var array
+    //  */
+    // public static $sluggableConfig;
 
     /**
      * Init Sluggable Package
@@ -21,8 +22,9 @@ trait Sluggable
      */
     public function initializeSluggable()
     {
-        if (!$this->sluggable)
+        if (!$this->sluggable) {
             throw new \Exception('You have to defined the public property `sluggable`.');
+        }
 
         $this->fillable[] = 'slug';
     }
@@ -35,13 +37,13 @@ trait Sluggable
      */
     protected static function bootSluggable()
     {
-        self::$sluggableConfig = config('Pharaonic.sluggable', include 'config.php');
+        static::saving(function (Model $model) {
+            $isCreating = config('pharaonic.sluggable.on_create') && !$model->getKey() && !$model->isDirty('slug');
+            $isUpdating = config('pharaonic.sluggable.on_update') && $model->getKey() && $model->isDirty($model->sluggable);
 
-        // Creating && Updating
-        self::saving(function ($model) {
-            if ((self::$sluggableConfig['onCreate'] && !$model->getKey()) || self::$sluggableConfig['onUpdate'] && $model->getKey())
-                if ($model->isDirty($model->sluggable) && !$model->isDirty('slug'))
-                    $model->slug = $model->generateSlug($model->{$model->sluggable});
+            if ($isCreating || $isUpdating) {
+                $model->slug = $model->generateSlug($model->{$model->sluggable});
+            }
         });
     }
 
@@ -58,8 +60,9 @@ trait Sluggable
         if ($isTranslatable && class_exists($class)) {
             $relation = strtolower(class_basename($class));
 
-            if (method_exists($this, $relation))
+            if (method_exists($this, $relation)) {
                 return implode('-', [$this->{$relation . '_id'}, $this->slug]);
+            }
         }
 
         return implode('-', [$this->getKey(), $this->slug]);
@@ -68,21 +71,28 @@ trait Sluggable
     /**
      * Generate slug for specific record.
      *
-     * @param string $string
+     * @param mixed $value
      * @return string|null
      */
-    private function generateSlug(string $string)
+    private function generateSlug($value)
     {
-        $string = slug($string);
-        if (empty($string)) return null;
+        $value = slug(
+            $value,
+            config('pharaonic.sluggable.separator'),
+            config('pharaonic.sluggable.ascii_only'),
+            config('pharaonic.sluggable.ascii_lang'),
+        );
+        
+        if (empty($value)) {
+            return null;
+        }
 
-        if ($this->slug != $string)
-            if (self::$sluggableConfig['unique']) {
-                $count = self::where('slug', 'like', $string . '%')->count();
-                $string = $count > 0 ? $string . '-' . $count : $string;
-            }
+        if ($this->slug != $value && config('pharaonic.sluggable.unique')) {
+            $count = self::where('slug', 'like', $value . '%')->count();
+            $value = $count > 0 ? $value . '-' . ++$count : $value;
+        }
 
-        return $string;
+        return $value;
     }
 
     /**

@@ -11,7 +11,6 @@ return new class () extends Migration {
             $table->id();
             $table->string('title');
             $table->sluggable();
-            $table->text('content')->nullable();
             $table->timestamps();
         });
     }

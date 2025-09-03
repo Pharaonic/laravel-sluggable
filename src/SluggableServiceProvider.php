@@ -3,6 +3,7 @@
 namespace Pharaonic\Laravel\Sluggable;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,9 +16,9 @@ class SluggableServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Blueprint::macro('sluggable', function () {
-            $this->string('slug')->nullable();
-        });
+        $this->mergeConfigFrom(__DIR__.'/../config/sluggable.php', 'pharaonic.sluggable');
+
+        Blueprint::macro('sluggable', fn () => $this->string('slug')->nullable()->index());
     }
 
     /**
@@ -27,14 +28,15 @@ class SluggableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Publishes
-        $this->publishes([
-            __DIR__ . '/config.php' => config_path('Pharaonic/sluggable.php'),
-        ], ['pharaonic', 'laravel-sluggable']);
+        if ($this->app->runningInConsole()) {
+            AboutCommand::add('Pharaonic', fn () => ['Sluggable' => '2.0.0']);
 
-        // Blade
-        Blade::directive('slug', function ($data) {
-            return "<?php echo slug($data); ?>";
-        });
+            $this->publishes(
+                [__DIR__ . '/../config/sluggable.php' => config_path('pharaonic/sluggable.php')],
+                ['pharaonic', 'sluggable', 'config']
+            );
+        }
+
+        Blade::directive('slug', fn ($data) => "<?php echo slug($data); ?>");
     }
 }

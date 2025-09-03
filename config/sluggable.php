@@ -5,10 +5,10 @@ return [
     'unique'    => true,
 
     // Generate slug on Eloquent Create
-    'onCreate'  => true,
+    'on_create'  => true,
 
     // Generate slug on Eloquent Update
-    'onUpdate'  => true,
+    'on_update'  => true,
 
     // Default slug separator
     'separator' => '-',

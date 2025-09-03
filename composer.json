@@ -13,15 +13,14 @@
     "authors": [
         {
             "name": "Moamen Eltouny",
-            "email": "raggi@pharaonic.io"
+            "email": "raggigroup@gmail.com"
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": "^8.0",
         "ext-mbstring": "*",
-        "laravel/framework": ">=6.0",
-        "pharaonic/php-slugify": ">=1.0"
-
+        "laravel/framework": "^12.0",
+        "pharaonic/php-slugify": "^2.0"
     },
     "config": {
         "sort-packages": true

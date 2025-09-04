@@ -22,7 +22,7 @@
         "pharaonic/php-slugify": "^2.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^9.15"
+        "orchestra/testbench": "^10.6"
     },
     "config": {
         "sort-packages": true

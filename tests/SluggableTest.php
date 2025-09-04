@@ -9,7 +9,7 @@ class SluggableTest extends TestCase
     public function test_it_can_generate_a_slug()
     {
         $article = Article::create([
-            'title'   => 'Test Title',
+            'title' => 'Test Title',
         ]);
 
         $this->assertSame('test-title', $article->slug);
@@ -21,7 +21,7 @@ class SluggableTest extends TestCase
         config(['pharaonic.sluggable.ascii_only' => true]);
 
         $article = Article::create([
-            'title'   => 'تجربة عنوان',
+            'title' => 'تجربة عنوان',
         ]);
 
         $this->assertSame('tgrb-aanoan', $article->slug);
@@ -30,7 +30,7 @@ class SluggableTest extends TestCase
     public function test_it_can_find_by_slug()
     {
         Article::create([
-            'title'   => 'Test Title',
+            'title' => 'Test Title',
         ]);
 
         $this->assertModelExists(Article::findBySlug('test-title'));

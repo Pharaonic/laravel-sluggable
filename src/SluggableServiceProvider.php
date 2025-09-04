@@ -29,7 +29,7 @@ class SluggableServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            AboutCommand::add('Pharaonic', fn () => ['Sluggable' => '2.0.0']);
+            AboutCommand::add('Pharaonic', fn () => ['Sluggable' => '12.0.0']);
 
             $this->publishes(
                 [__DIR__ . '/../config/sluggable.php' => config_path('pharaonic/sluggable.php')],

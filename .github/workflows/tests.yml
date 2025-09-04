@@ -1,6 +1,9 @@
-name: tests
+name: Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
 
 jobs:
   run:
@@ -38,4 +41,4 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Run test suite
-        run: vendor/bin/phpunit
+        run: vendor/bin/phpunit --testdox

@@ -2,14 +2,11 @@
 <p align="center"><a href="https://pharaonic.io" target="_blank"><img src="https://raw.githubusercontent.com/Pharaonic/logos/main/sluggable.jpg"></a></p>
 
 <p align="center">
-  <a href="https://php.net" target="_blank"><img src="https://img.shields.io/static/v1?label=PHP&message=%3E=8.2&color=blue&style=flat-square" alt="PHP Version : >= 8.2"></a>
-  <a href="https://laravel.com" target="_blank"><img src="https://img.shields.io/static/v1?label=Laravel&message=%3E=12.0&color=F05340&style=flat-square" alt="Laravel Version : >= 12.0"></a>
-  <img src="https://github.com/Pharaonic/laravel-sluggable/actions/workflows/tests.yml/badge.svg" alt="Tests">
-  <img src="https://img.shields.io/static/v1?label=License&message=MIT&color=brightgreen&style=flat-square" alt="License">
-  <br>
-  <a href="https://packagist.org/packages/Pharaonic/laravel-sluggable" target="_blank"><img src="https://img.shields.io/static/v1?label=Packagist&message=pharaonic/laravel-sluggable&color=blue&logo=packagist&logoColor=white" alt="Source"></a>
-  <a href="https://packagist.org/packages/pharaonic/laravel-sluggable" target="_blank"><img src="https://poser.pugx.org/pharaonic/laravel-sluggable/v" alt="Packagist Version"></a>
-  <a href="https://packagist.org/packages/pharaonic/laravel-sluggable" target="_blank"><img src="https://poser.pugx.org/pharaonic/laravel-sluggable/downloads" alt="Packagist Downloads"></a>
+<a href="https://github.com/Pharaonic/laravel-sluggable/actions"><img src="https://github.com/Pharaonic/laravel-sluggable/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://laravel.com" target="_blank"><img src="https://img.shields.io/static/v1?label=Laravel&message=11.x&color=F05340&style=flat-square" alt="Laravel Version : 11.x"></a>
+  <a href="https://packagist.org/packages/pharaonic/laravel-sluggable" target="_blank"><img src="https://poser.pugx.org/pharaonic/laravel-sluggable/downloads" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/Pharaonic/laravel-sluggable"><img src="https://img.shields.io/packagist/v/Pharaonic/laravel-sluggable" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/Pharaonic/laravel-sluggable"><img src="https://img.shields.io/static/v1?label=License&message=MIT&color=brightgreen&style=flat-square" alt="License"></a>
 </p>
 
 <h3 align="center">Simplest Sluggable for Laravel Eloquent/Model to convert string into a slug.</h3>

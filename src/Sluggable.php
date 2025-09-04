@@ -22,7 +22,7 @@ trait Sluggable
      */
     public function initializeSluggable()
     {
-        if (!$this->sluggable) {
+        if (! $this->sluggable) {
             throw new \Exception('You have to defined the public property `sluggable`.');
         }
 
@@ -38,7 +38,7 @@ trait Sluggable
     protected static function bootSluggable()
     {
         static::saving(function (Model $model) {
-            $isCreating = config('pharaonic.sluggable.on_create') && !$model->getKey() && !$model->isDirty('slug');
+            $isCreating = config('pharaonic.sluggable.on_create') && ! $model->getKey() && ! $model->isDirty('slug');
             $isUpdating = config('pharaonic.sluggable.on_update') && $model->getKey() && $model->isDirty($model->sluggable);
 
             if ($isCreating || $isUpdating) {
@@ -82,7 +82,7 @@ trait Sluggable
             config('pharaonic.sluggable.ascii_only'),
             config('pharaonic.sluggable.ascii_lang'),
         );
-        
+
         if (empty($value)) {
             return null;
         }

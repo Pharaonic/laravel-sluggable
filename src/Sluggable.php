@@ -4,6 +4,7 @@ namespace Pharaonic\Laravel\Sluggable;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 trait Sluggable
 {
@@ -58,10 +59,10 @@ trait Sluggable
         $class = substr(__CLASS__, 0, -11);
 
         if ($isTranslatable && class_exists($class)) {
-            $relation = strtolower(class_basename($class));
+            $relation = Str::camel(class_basename($class));
 
             if (method_exists($this, $relation)) {
-                return implode('-', [$this->{$relation . '_id'}, $this->slug]);
+                return implode('-', [$this->{Str::snake($relation).'_id'}, $this->slug]);
             }
         }
 

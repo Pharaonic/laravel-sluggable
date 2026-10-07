@@ -27,4 +27,4 @@ labels:
   copied: Copied!
 ---
 
-Laravel Sluggable turns `Hello World` into `hello-world` the moment your Eloquent model is created. Add one property for the common case, or define as many slug columns as you need, each from its own attribute, relation or computed value, and always unique in its own column.
+Slugs for Eloquent, zero setup. Add `protected $sluggable = 'title';` and `Hello World` becomes `hello-world`, then `hello-world-2`, or fill as many slug columns as you need with `sluggable()`.

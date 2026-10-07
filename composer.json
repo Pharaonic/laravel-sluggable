@@ -1,31 +1,50 @@
 {
     "name": "pharaonic/laravel-sluggable",
-    "description": "Simplest Sluggable for Laravel Eloquent/Model",
+    "description": "Simple, multi-column slugs for Laravel Eloquent models, powered by Pharaonic PHP Slugify.",
     "keywords": [
         "php",
         "laravel",
         "slug",
         "sluggable",
+        "slugify",
         "eloquent",
         "model"
     ],
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Moamen Eltouny",
+            "name": "Moamen Eltouny (Raggi)",
             "email": "raggigroup@gmail.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/Pharaonic/laravel-sluggable/issues",
+        "source": "https://github.com/Pharaonic/laravel-sluggable"
+    },
     "require": {
-        "php": "~8.2|~8.3|~8.4",
-        "laravel/framework": "^12.0",
-        "pharaonic/php-slugify": "^2.0"
+        "php": ">=8.0 <8.1",
+        "illuminate/contracts": "^6.20",
+        "illuminate/database": "^6.20",
+        "illuminate/support": "^6.20",
+        "illuminate/view": "^6.20",
+        "pharaonic/php-slugify": "~8.0.3"
     },
     "require-dev": {
-        "orchestra/testbench": "^10.6"
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^4.18",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^9.6"
     },
-    "config": {
-        "sort-packages": true
+    "autoload": {
+        "psr-4": {
+            "Pharaonic\\Laravel\\Sluggable\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pharaonic\\Laravel\\Sluggable\\Tests\\": "tests/"
+        }
     },
     "extra": {
         "laravel": {
@@ -34,16 +53,25 @@
             ]
         }
     },
-    "autoload": {
-        "psr-4": {
-            "Pharaonic\\Laravel\\Sluggable\\": "src"
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse --no-progress",
+        "style": "pint --test",
+        "format": "pint",
+        "check": [
+            "@style",
+            "@analyse",
+            "@test"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "policy": {
+            "advisories": {
+                "block": false
+            }
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Pharaonic\\Laravel\\Sluggable\\Tests\\": "tests"
-        }
-    },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

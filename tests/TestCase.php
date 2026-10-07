@@ -2,16 +2,33 @@
 
 namespace Pharaonic\Laravel\Sluggable\Tests;
 
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\TestCase as Orchestra;
 use Pharaonic\Laravel\Sluggable\SluggableServiceProvider;
 
-class TestCase extends OrchestraTestCase
+abstract class TestCase extends Orchestra
 {
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        Schema::create('categories', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+        });
+
+        Schema::create('posts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('seo_title')->nullable();
+            $table->sluggable();
+            $table->sluggable('seo_slug');
+            $table->sluggable('category_slug');
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     protected function getEnvironmentSetUp($app)
@@ -26,7 +43,8 @@ class TestCase extends OrchestraTestCase
 
     protected function getPackageProviders($app)
     {
-        return [SluggableServiceProvider::class];
+        return [
+            SluggableServiceProvider::class,
+        ];
     }
-
 }

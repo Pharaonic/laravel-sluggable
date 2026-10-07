@@ -24,6 +24,7 @@ Use the branch matching the Laravel version you want to support.
 
 ```text
 6.x  → Laravel 6
+7.x  → Laravel 7
 11.x → Laravel 11
 12.x → Laravel 12
 ```
@@ -31,8 +32,8 @@ Use the branch matching the Laravel version you want to support.
 Example:
 
 ```bash
-git checkout 6.x
-git pull upstream 6.x
+git checkout 7.x
+git pull upstream 7.x
 ```
 
 Always start your work from the appropriate Laravel version branch.
@@ -103,7 +104,7 @@ The package must also be tested against the Laravel version targeted by the bran
 For example:
 
 ```text
-6.x → Laravel6
+7.x → Laravel7
 ```
 
 ## Commit your changes
@@ -115,7 +116,7 @@ Examples:
 ```text
 Add per-slug max length option
 Fix unique suffix for soft-deleted rows
-Update Laravel 6 compatibility
+Update Laravel 7 compatibility
 Update usage documentation
 ```
 
@@ -143,7 +144,7 @@ Example:
 ```text
 fix/unique-suffix
         ↓
-       6.x
+       7.x
 ```
 
 Do not submit the pull request against another Laravel version branch.

@@ -32,6 +32,9 @@ class Post extends Model
     /** @var string */
     protected $sluggable = 'title';
 
+    /**
+     * @return BelongsTo<Category, $this>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

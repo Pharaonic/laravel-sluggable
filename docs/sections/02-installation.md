@@ -4,9 +4,9 @@ Install the package with Composer. Laravel discovers the service provider automa
 
 ### Requirements
 
-- PHP 8.1, 8.2 or 8.3
-- Laravel 10.x
-- `pharaonic/php-slugify` 8.1.2+ on PHP 8.1, 8.2.1+ on PHP 8.2 or 8.3.1+ on PHP 8.3 (installed automatically)
+- PHP 8.2, 8.3 or 8.4
+- Laravel 11.x
+- `pharaonic/php-slugify` 8.2.1+ on PHP 8.2, 8.3.1+ on PHP 8.3 or 8.4.0+ on PHP 8.4 (installed automatically)
 
 ### Composer Installation
 

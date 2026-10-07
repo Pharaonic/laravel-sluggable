@@ -2,7 +2,7 @@
 
 Use an array with a `source` key to override the config for one slug. Simple and advanced definitions can be mixed in the same method.
 
-```php title="app/Post.php"
+```php title="app/Models/Post.php"
 public function sluggable(): array
 {
     return [

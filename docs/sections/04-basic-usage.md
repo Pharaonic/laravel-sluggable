@@ -2,8 +2,8 @@
 
 Add the `Sluggable` trait to your model and name the source attribute in the `$sluggable` property. The slug is written to the `slug` column.
 
-```php title="app/Post.php"
-namespace App;
+```php title="app/Models/Post.php"
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Pharaonic\Laravel\Sluggable\Sluggable;
@@ -41,14 +41,14 @@ Post::whereSlug('hello-world')->first();
 Route model binding can resolve the model by slug by naming the column in the route:
 
 ```php title="routes/web.php"
-Route::get('/posts/{post:slug}', function (App\Post $post) {
+Route::get('/posts/{post:slug}', function (App\Models\Post $post) {
     return $post;
 });
 ```
 
 To always bind by slug, return the column from `getRouteKeyName()` on the model instead:
 
-```php title="app/Post.php"
+```php title="app/Models/Post.php"
 public function getRouteKeyName()
 {
     return 'slug';

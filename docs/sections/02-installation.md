@@ -4,9 +4,9 @@ Install the package with Composer. Laravel discovers the service provider automa
 
 ### Requirements
 
-- PHP 8.0
-- Laravel 7.30 or newer within 7.x
-- `pharaonic/php-slugify` 8.0.4+ within 8.0.x (installed automatically)
+- PHP 8.0 or 8.1
+- Laravel 8.75 or newer within 8.x
+- `pharaonic/php-slugify` 8.0.4+ on PHP 8.0 or 8.1.2+ on PHP 8.1 (installed automatically)
 
 ### Composer Installation
 
@@ -34,7 +34,7 @@ Add the column with the `sluggable` migration macro:
 
 ```php title="database/migrations/2020_01_01_000000_create_posts_table.php"
 Schema::create('posts', function (Blueprint $table) {
-    $table->bigIncrements('id');
+    $table->id();
     $table->string('title');
     $table->sluggable(); // "slug": string, nullable, unique
     $table->timestamps();

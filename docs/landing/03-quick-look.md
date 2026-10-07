@@ -2,7 +2,7 @@
 view: components.packages.quick-look
 title: A quick look
 subtitle: One property on the model, one macro in the migration, and slugs take care of themselves.
-file: app/Post.php
+file: app/Models/Post.php
 language: php
 code: |
   use Illuminate\Database\Eloquent\Model;

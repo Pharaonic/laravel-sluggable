@@ -41,7 +41,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: fileinfo
+          extensions: fileinfo, mbstring, pdo_sqlite, sqlite3
           coverage: none
           tools: composer:v2
 

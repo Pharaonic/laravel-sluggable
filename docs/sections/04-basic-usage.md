@@ -38,19 +38,21 @@ Post::findBySlugOrFail('hello-world');  // Post or ModelNotFoundException
 Post::whereSlug('hello-world')->first();
 ```
 
-To resolve route model binding by slug, return the column from `getRouteKeyName()`:
+Route model binding can resolve the model by slug by naming the column in the route:
+
+```php title="routes/web.php"
+Route::get('/posts/{post:slug}', function (App\Post $post) {
+    return $post;
+});
+```
+
+To always bind by slug, return the column from `getRouteKeyName()` on the model instead:
 
 ```php title="app/Post.php"
 public function getRouteKeyName()
 {
     return 'slug';
 }
-```
-
-```php title="routes/web.php"
-Route::get('/posts/{post}', function (App\Post $post) {
-    return $post; // resolved by slug
-});
 ```
 
 ### Slug With Key

@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## 13.0.0 - Unreleased
+
+### Compatibility
+
+- Added support for Laravel 13.x (`illuminate/*` ^13.0) on PHP 8.3, 8.4 and 8.5.
+- Dropped PHP 8.2, which Laravel 13 no longer supports.
+- Requires `pharaonic/php-slugify` 8.3.1+ (PHP 8.3), 8.4.0+ (PHP 8.4) or 8.5.0+ (PHP 8.5).
+- Tested with PHPUnit 12.5 and 13.
+- Same features and behavior as 12.1.0.
+
+## 12.1.0 - 2026-10-07
 
 ### Compatibility
 

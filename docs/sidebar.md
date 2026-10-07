@@ -1,0 +1,20 @@
+- Getting Started
+  - [Overview](#overview)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+- Usage
+  - [Basic Usage](#basic-usage)
+  - [Multiple Slugs](#multiple-slugs)
+  - [Callable Sources](#callable-sources)
+  - [Per-Slug Options](#per-slug-options)
+  - [Unique Slugs](#unique-slugs)
+  - [Updates & Manual Slugs](#updates)
+  - [Migration Macro](#migration-macro)
+  - [Blade Directive](#blade-directive)
+- API Reference
+  - [Methods & Options](#api-reference)
+- Examples
+  - [Use Cases](#examples)
+  - [Troubleshooting](#troubleshooting)
+- Community
+  - [Contributors](#contributors)

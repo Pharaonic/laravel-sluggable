@@ -2,41 +2,45 @@
 
 namespace Pharaonic\Laravel\Sluggable;
 
+use Closure;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class SluggableServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/sluggable.php', 'pharaonic.sluggable');
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/sluggable.php',
+            'pharaonic.sluggable'
+        );
 
-        Blueprint::macro('sluggable', fn () => $this->string('slug')->nullable()->index());
+        $this->blueprintMacro('sluggable', function (string $column = 'slug') {
+            return $this->string($column)->nullable()->unique();
+        });
     }
 
     /**
-     * Bootstrap services.
+     * Register a Blueprint macro; Laravel binds the closure to the Blueprint instance.
      *
-     * @return void
+     * @param-closure-this Blueprint $macro
      */
-    public function boot()
+    private function blueprintMacro(string $name, Closure $macro): void
     {
+        Blueprint::macro($name, $macro);
+    }
+
+    public function boot(): void
+    {
+        Blade::directive('slug', function ($expression) {
+            return "<?php echo slug($expression); ?>";
+        });
+
         if ($this->app->runningInConsole()) {
-            AboutCommand::add('Pharaonic', fn () => ['Sluggable' => '12.0.0']);
-
-            $this->publishes(
-                [__DIR__ . '/../config/sluggable.php' => config_path('pharaonic/sluggable.php')],
-                ['pharaonic', 'sluggable', 'config']
-            );
+            $this->publishes([
+                __DIR__.'/../config/sluggable.php' => $this->app->configPath('pharaonic/sluggable.php'),
+            ], ['pharaonic', 'laravel-sluggable', 'pharaonic-config', 'sluggable-config']);
         }
-
-        Blade::directive('slug', fn ($data) => "<?php echo slug($data); ?>");
     }
 }

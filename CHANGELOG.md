@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Compatibility
+
+- Added support for Laravel 12.x (`illuminate/*` ^12.0) on PHP 8.2, 8.3, 8.4 and 8.5.
+- Requires `pharaonic/php-slugify` 8.2.1+ (PHP 8.2), 8.3.1+ (PHP 8.3), 8.4.0+ (PHP 8.4) or 8.5.0+ (PHP 8.5).
+- Tested with PHPUnit 11.5 and 12.
+- Same features and behavior as 11.1.0.
+
 ## 11.1.0 - 2026-10-07
 
 ### Compatibility

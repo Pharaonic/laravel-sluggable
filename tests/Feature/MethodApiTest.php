@@ -110,7 +110,7 @@ class MethodApiTest extends TestCase
     {
         MultiSlugPost::$definitions = ['slug' => 'date'];
 
-        $post = new MultiSlugPost();
+        $post = new MultiSlugPost;
         $post->setRawAttributes(['date' => 'Launch Day']);
         $post->unsetRelation('date');
 

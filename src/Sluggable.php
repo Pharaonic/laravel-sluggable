@@ -2,8 +2,10 @@
 
 namespace Pharaonic\Laravel\Sluggable;
 
+use Illuminate\Contracts\Database\Query\Expression;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Grammar;
 use Illuminate\Support\Str;
 use Pharaonic\Slugify\Slugify;
 use Pharaonic\Slugify\SlugOptions;
@@ -218,7 +220,7 @@ trait Sluggable
         $taken = $query
             ->where(function (Builder $query) use ($column, $slug, $escaped) {
                 $query->where($column, $slug)
-                    ->orWhereRaw($query->getQuery()->getGrammar()->wrap($column)." like ? escape '!'", [$escaped.'%']);
+                    ->whereRaw($this->slugLikeExpression($column), [$escaped.'%'], 'or');
             })
             ->pluck($column)
             ->all();
@@ -253,6 +255,22 @@ trait Sluggable
         }
 
         return $slug.$suffix;
+    }
+
+    /**
+     * The "column like ? escape '!'" clause, with the column wrapped by the query grammar.
+     */
+    protected function slugLikeExpression(string $column): Expression
+    {
+        return new class($column) implements Expression
+        {
+            public function __construct(private string $column) {}
+
+            public function getValue(Grammar $grammar): string
+            {
+                return $grammar->wrap($this->column)." like ? escape '!'";
+            }
+        };
     }
 
     /**

@@ -4,7 +4,7 @@ The package registers a `sluggable` macro on the schema `Blueprint`. Its only ar
 
 ```php title="database/migrations/2020_01_01_000000_create_posts_table.php"
 Schema::create('posts', function (Blueprint $table) {
-    $table->bigIncrements('id');
+    $table->id();
     $table->string('title');
 
     $table->sluggable();                // slug

@@ -2,7 +2,7 @@
 
 Define a `sluggable()` method when a model needs more than one slug, or a slug in a column other than `slug`. Each array key is the target column and each value is its source.
 
-```php title="app/Product.php"
+```php title="app/Models/Product.php"
 use Illuminate\Database\Eloquent\Model;
 use Pharaonic\Laravel\Sluggable\Sluggable;
 

@@ -20,7 +20,7 @@ card:
   topic: seo
   icon: tag
   tags: slug sluggable slugify eloquent model url seo unique permalink unicode transliteration
-  description: Automatic, unique slugs for Laravel Eloquent models. One property for the common case, any number of slug columns when you need them, powered by PHP Slugify.
+  description: Unique slugs for Eloquent models. One property for the common case, any number of slug columns when you need more.
 
 seo:
   title: "{package.fullName} - Eloquent Slug Package for Laravel"

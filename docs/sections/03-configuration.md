@@ -38,6 +38,10 @@ per-slug option  →  config/pharaonic/sluggable.php  →  package default
 
 The `$sluggable` property has no per-slug options, so it always uses the config.
 
+:::info Read on Every Save
+The config is read each time a model is saved, not once at boot. Changing it at runtime with `config(['pharaonic.sluggable.on_update' => true])` applies to the next save, which is handy in tests and seeders.
+:::
+
 :::info Unicode by Default
 With `ascii_only` set to `false`, slugs keep non-Latin letters: `مرحبا بالعالم` becomes `مرحبا-بالعالم`. Browsers display these URLs as written and encode them automatically.
 :::

@@ -8,7 +8,7 @@ A post gets a slug from its title, and the controller looks it up by slug.
 
   ```php title="database/migrations/2020_01_01_000000_create_posts_table.php"
   Schema::create('posts', function (Blueprint $table) {
-      $table->bigIncrements('id');
+      $table->id();
       $table->string('title');
       $table->text('body');
       $table->sluggable();
@@ -18,8 +18,8 @@ A post gets a slug from its title, and the controller looks it up by slug.
 
 - ===Model
 
-  ```php title="app/Post.php"
-  namespace App;
+  ```php title="app/Models/Post.php"
+  namespace App\Models;
 
   use Illuminate\Database\Eloquent\Model;
   use Pharaonic\Laravel\Sluggable\Sluggable;
@@ -39,7 +39,7 @@ A post gets a slug from its title, and the controller looks it up by slug.
   ```php title="app/Http/Controllers/PostController.php"
   namespace App\Http\Controllers;
 
-  use App\Post;
+  use App\Models\Post;
 
   class PostController extends Controller
   {
@@ -55,14 +55,16 @@ A post gets a slug from its title, and the controller looks it up by slug.
 - ===Route
 
   ```php title="routes/web.php"
-  Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
+  use App\Http\Controllers\PostController;
+
+  Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
   ```
 
 ### 2. Products With SEO and Category Slugs
 
 One product, three independent slugs, one of them from a relation.
 
-```php title="app/Product.php"
+```php title="app/Models/Product.php"
 class Product extends Model
 {
     use Sluggable;

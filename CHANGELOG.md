@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 8.0.0 - Unreleased
+
+### Compatibility
+
+- Added support for Laravel 8.x (`illuminate/*` ^8.75) on PHP 8.0 and 8.1.
+- Requires `pharaonic/php-slugify` 8.0.4+ (PHP 8.0) or 8.1.2+ (PHP 8.1), which allow the `voku/portable-ascii` 1.x that Laravel 8 requires.
+- Same features and behavior as 7.0.0.
+
 ## 7.0.0 - 2026-10-07
 
 ### Compatibility

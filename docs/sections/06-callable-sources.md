@@ -2,7 +2,7 @@
 
 A source can be a callable instead of an attribute name. It receives the model and returns the string to slugify. Use it for relations, accessors and computed values.
 
-```php title="app/Post.php"
+```php title="app/Models/Post.php"
 public function sluggable(): array
 {
     return [

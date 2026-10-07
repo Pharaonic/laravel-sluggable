@@ -71,7 +71,8 @@ trait Sluggable
     /**
      * Conditional Where for Slug
      *
-     * @return Builder
+     * @param  Builder<static>  $scope
+     * @return Builder<static>
      */
     public function scopeWhereSlug(Builder $scope, string $slug)
     {

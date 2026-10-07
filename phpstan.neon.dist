@@ -1,0 +1,8 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        # The Sluggable trait is only analysed in the context of a class using it.
+        - tests/Fixtures
+    tmpDir: .phpstan
+    treatPhpDocTypesAsCertain: false

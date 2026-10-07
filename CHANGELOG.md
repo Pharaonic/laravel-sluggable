@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 9.0.0 - Unreleased
+
+### Compatibility
+
+- Added support for Laravel 9.x (`illuminate/*` ^9.33) on PHP 8.0, 8.1 and 8.2.
+- Requires `pharaonic/php-slugify` 8.0.4+ (PHP 8.0), 8.1.2+ (PHP 8.1) or 8.2.1+ (PHP 8.2).
+- Requires Laravel 9.33 or newer, the first 9.x release that requires a `nesbot/carbon` compatible with PHP 8.2.
+- Same features and behavior as 8.0.0.
+
 ## 8.0.0 - 2026-10-07
 
 ### Compatibility

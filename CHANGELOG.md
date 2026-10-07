@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 10.0.0 - Unreleased
+
+### Compatibility
+
+- Added support for Laravel 10.x (`illuminate/*` ^10.0) on PHP 8.1, 8.2 and 8.3.
+- Requires `pharaonic/php-slugify` 8.1.2+ (PHP 8.1), 8.2.1+ (PHP 8.2) or 8.3.1+ (PHP 8.3).
+- Same features and behavior as 9.0.0.
+
 ## 9.0.0 - 2026-10-07
 
 ### Compatibility

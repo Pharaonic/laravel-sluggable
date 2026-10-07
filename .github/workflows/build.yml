@@ -11,6 +11,7 @@ on:
   pull_request:
     branches:
       - 6.x
+      - develop
   workflow_dispatch:
 
 permissions:

@@ -7,17 +7,23 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Grammar;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
+use Pharaonic\Sluggable\Attributes\Slug;
 use Pharaonic\Slugify\Slugify;
 use Pharaonic\Slugify\SlugOptions;
+use ReflectionClass;
 
 /**
  * Simple API:   protected $sluggable = 'title';            // title -> slug
  * Advanced API: public function sluggable(): array          // column => source|options
  *
- * When both are defined, sluggable() wins and the two are never merged.
+ * Priority: sluggable() method, class attributes, then property; never merged.
  */
 trait Sluggable
 {
+    /** @var array<class-string, array<string, array<string, mixed>>> */
+    protected static array $sluggableAttributeDefinitions = [];
+
     /**
      * Add the slug columns to the fillable list (only when the model uses one).
      *
@@ -114,6 +120,8 @@ trait Sluggable
     {
         if (method_exists($this, 'sluggable')) {
             $definitions = $this->sluggable();
+        } elseif (($definitions = $this->getSluggableAttributeDefinitions()) !== []) {
+            // Class attributes override the legacy property as a complete set.
         } elseif (! empty($this->sluggable)) {
             $definitions = ['slug' => $this->sluggable];
         } else {
@@ -140,6 +148,34 @@ trait Sluggable
         }
 
         return $definitions;
+    }
+
+    /**
+     * Cache declarations only: defaults are resolved for each model instance.
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    protected function getSluggableAttributeDefinitions(): array
+    {
+        $class = static::class;
+
+        if (! array_key_exists($class, static::$sluggableAttributeDefinitions)) {
+            $definitions = [];
+
+            foreach ((new ReflectionClass($class))->getAttributes(Slug::class) as $attribute) {
+                $configuration = $attribute->newInstance();
+
+                if (array_key_exists($configuration->target, $definitions)) {
+                    throw new InvalidArgumentException('Duplicate Sluggable target: '.$configuration->target);
+                }
+
+                $definitions[$configuration->target] = $configuration->toArray();
+            }
+
+            static::$sluggableAttributeDefinitions[$class] = $definitions;
+        }
+
+        return static::$sluggableAttributeDefinitions[$class];
     }
 
     /**

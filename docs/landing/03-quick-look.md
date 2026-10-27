@@ -7,7 +7,7 @@ language: php
 code: |
   use Illuminate\Database\Eloquent\Model;
   use Pharaonic\Laravel\Sluggable\Sluggable;
-  use Pharaonic\Sluggable\Attributes\Slug;
+  use Pharaonic\Laravel\Sluggable\Attributes\Slug;
 
   #[Slug(source: 'title')]
   class Post extends Model

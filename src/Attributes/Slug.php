@@ -1,6 +1,6 @@
 <?php
 
-namespace Pharaonic\Sluggable\Attributes;
+namespace Pharaonic\Laravel\Sluggable\Attributes;
 
 use Attribute;
 use InvalidArgumentException;

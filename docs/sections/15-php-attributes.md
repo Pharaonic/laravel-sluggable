@@ -1,6 +1,6 @@
 ## PHP Attributes
 
-On PHP 8.1 or later within this branch’s supported PHP range, configure slugs on the model class using the repeatable
+On PHP 8.3 or later within this branch’s supported PHP range, configure slugs on the model class using the repeatable
 `Pharaonic\Laravel\Sluggable\Attributes\Slug` attribute. Keep using the existing
 `Pharaonic\Laravel\Sluggable\Sluggable` trait to register Eloquent events:
 

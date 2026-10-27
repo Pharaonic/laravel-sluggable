@@ -11,24 +11,28 @@
   <a href="https://packagist.org/packages/pharaonic/laravel-sluggable" target="_blank"><img src="https://poser.pugx.org/pharaonic/laravel-sluggable/downloads" alt="Packagist Downloads"></a>
 </p>
 
-<h3 align="center">Simplest Sluggable for Laravel Eloquent models.</h3>
+<h3 align="center">Simple, predictable slugs for Laravel Eloquent models.</h3>
 <h5 align="center">Powered by <a href="https://pharaonic.dev/packages/php/slugify" target="_blank">PHP Slugify</a>.</h5>
 <br>
 
-## Documentation
+## Installation
 
-You can find the detailed documentation here in [Laravel Sluggable Documentation](https://pharaonic.dev/packages/laravel/sluggable).
+```bash
+composer require pharaonic/laravel-sluggable
+```
 
-## PHP Attributes
+## Usage
 
-On PHP 8.0, configure slugs on the model class using the repeatable
-`Pharaonic\Laravel\Sluggable\Attributes\Slug` attribute. Keep using the existing
-`Pharaonic\Laravel\Sluggable\Sluggable` trait to register Eloquent events:
+Laravel Sluggable can generate and maintain slugs automatically through Eloquent model events.
+
+### PHP Attributes
+
+Configure your slug directly on the model using the `Slug` attribute:
 
 ```php
 use Illuminate\Database\Eloquent\Model;
-use Pharaonic\Laravel\Sluggable\Sluggable;
 use Pharaonic\Laravel\Sluggable\Attributes\Slug;
+use Pharaonic\Laravel\Sluggable\Sluggable;
 
 #[Slug(source: 'title')]
 class Post extends Model
@@ -37,47 +41,82 @@ class Post extends Model
 }
 ```
 
-The default target is `slug`; it can also be explicit:
+The default target column is `slug`:
 
 ```php
 #[Slug(source: 'title', target: 'slug')]
 ```
 
-Repeat the attribute for any number of independent slug columns:
+Need more than one slug? Repeat the attribute:
 
 ```php
 #[Slug(source: 'title', target: 'slug', unique: true)]
-#[Slug(source: 'seo_title', target: 'seo_slug', separator: '-')]
+#[Slug(source: 'seo_title', target: 'seo_slug')]
 class Post extends Model
 {
     use Sluggable;
 }
 ```
 
-Arguments use the existing option names: `separator`, `unique`, `on_create`,
-`on_update`, `include_trashed`, `max_length`, `ascii_only`, and `ascii_lang`.
-Omitted or null options inherit package configuration and defaults. Use
-`max_length: 0` for no length limit. Callable sources remain available through
-`sluggable()` for combining values, relations and computed sources; attribute
-sources accept a single column name. The source defaults to `name`.
+Available attribute options include:
 
-Configuration priority is `sluggable()` method → PHP Attributes → legacy
-`$sluggable` property → package defaults. The selected definitions are never
-merged with lower-priority definitions; an empty method result disables slugs.
-Defaults fill missing options only; models with no definitions generate no slugs.
+`source`, `target`, `separator`, `unique`, `on_create`, `on_update`, `include_trashed`, `max_length`, `ascii_only`, and `ascii_lang`.
 
-Only attributes declared on the model class itself are used. Parent attributes
-are not inherited; inherited methods and properties keep their existing behavior.
-Empty sources, empty targets and duplicate attribute targets throw `InvalidArgumentException`. Declarations are cached per model class,
-while package defaults are resolved on each use.
+Omitted options inherit the package defaults.
 
-Existing property and method configuration continues working unchanged. All
-configuration styles use the same creating/updating listeners and slug engine.
+Use `max_length: 0` when no length limit is required.
+
+### Callable Sources
+
+PHP Attributes are designed for simple column-based sources.
+
+For computed values, multiple columns, relations, or custom logic, use the existing `sluggable()` method:
+
+```php
+public function sluggable(): array
+{
+    return [
+        'slug' => [
+            'source' => fn ($model) => $model->category->name.' '.$model->title,
+        ],
+    ];
+}
+```
+
+## Configuration Priority
+
+Laravel Sluggable keeps all configuration styles backward compatible.
+
+When more than one style is available, the package resolves them in this order:
+
+```text
+sluggable() method
+    ↓
+PHP Attributes
+    ↓
+$sluggable property
+    ↓
+Package defaults
+```
+
+Definitions from different styles are not merged.
+
+Package defaults only fill missing options for the selected configuration.
+
+Existing `$sluggable` properties and `sluggable()` methods continue to work unchanged.
+
+## Documentation
+
+For the complete API, configuration options, inheritance rules, validation behavior, and advanced usage, see the [Laravel Sluggable Documentation](https://pharaonic.dev/packages/laravel/sluggable).
 
 ## Contributing
 
-Thank you for considering contributing to this package! Be one of Pharaonic team.
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Support & Security
+
+See [SUPPORT.md](SUPPORT.md) and [SECURITY.md](SECURITY.md).
 
 ## License
 
-This package is an open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT. See [LICENSE](LICENSE).

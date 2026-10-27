@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+### Added
+
+- Repeatable model-level `Pharaonic\Sluggable\Attributes\Slug` attributes, using the existing slug engine and options.
+- Independent attribute slug targets, each with a single source column.
+- Method → attributes → property configuration priority, per-class declaration caching, and clear validation for invalid or duplicate attribute definitions.
+
+### Compatibility
+
+- Attributes require PHP 8.0; existing PHP and Laravel requirements are unchanged.
+- Existing method, property and callable source APIs remain supported.
+- Class attributes are read only from the concrete model, without implicit inheritance.
+
 ## 10.0.0 - 2026-10-07
 
 ### Compatibility

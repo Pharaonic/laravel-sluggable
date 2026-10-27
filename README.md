@@ -22,13 +22,13 @@ You can find the detailed documentation here in [Laravel Sluggable Documentation
 ## PHP Attributes
 
 On PHP 8.0, configure slugs on the model class using the repeatable
-`Pharaonic\Sluggable\Attributes\Slug` attribute. Keep using the existing
+`Pharaonic\Laravel\Sluggable\Attributes\Slug` attribute. Keep using the existing
 `Pharaonic\Laravel\Sluggable\Sluggable` trait to register Eloquent events:
 
 ```php
 use Illuminate\Database\Eloquent\Model;
 use Pharaonic\Laravel\Sluggable\Sluggable;
-use Pharaonic\Sluggable\Attributes\Slug;
+use Pharaonic\Laravel\Sluggable\Attributes\Slug;
 
 #[Slug(source: 'title')]
 class Post extends Model

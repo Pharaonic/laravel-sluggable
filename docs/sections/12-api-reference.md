@@ -7,7 +7,7 @@ All methods live on the `Pharaonic\Laravel\Sluggable\Sluggable` trait.
 | Member | Description |
 | --- | --- |
 | `protected $sluggable = 'title';` | Generate `slug` from one direct attribute, using the config. |
-| `public function sluggable(): array` | Return `column => source` or `column => [options]` for any number of slugs. Takes precedence over `$sluggable`. |
+| `public function sluggable(): array` | Return `column => source` or `column => [options]` for any number of slugs. Takes precedence over PHP Attributes and `$sluggable`. |
 
 ### Methods
 

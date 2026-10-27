@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Grammar;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Pharaonic\Sluggable\Attributes\Slug;
+use Pharaonic\Laravel\Sluggable\Attributes\Slug;
 use Pharaonic\Slugify\Slugify;
 use Pharaonic\Slugify\SlugOptions;
 use ReflectionClass;

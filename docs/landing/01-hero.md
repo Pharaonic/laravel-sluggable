@@ -27,4 +27,4 @@ labels:
   copied: Copied!
 ---
 
-Laravel Sluggable turns `Hello World` into `hello-world` the moment your Eloquent model is created. Add one property for the common case, or define as many slug columns as you need, each from its own attribute, relation or computed value, and always unique in its own column.
+Laravel Sluggable turns `Hello World` into `hello-world` the moment your Eloquent model is created. Add `#[Slug(source: 'title')]` to your model using the `Sluggable` trait, or define as many slug columns as you need. Existing property and method configuration stays supported, including relations and computed values, with uniqueness per column.

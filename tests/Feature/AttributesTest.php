@@ -11,9 +11,7 @@ class AttributesTest extends TestCase
 {
     public function test_default_target_and_attribute_priority_over_property(): void
     {
-        $post = new #[Slug(source: 'seo_title')] class extends Post
-        {
-        };
+        $post = new #[Slug(source: 'seo_title')] class extends Post {};
         $post->fill(['title' => 'Ignored', 'seo_title' => 'Hello World'])->save();
 
         $this->assertSame('hello-world', $post->slug);
@@ -23,9 +21,7 @@ class AttributesTest extends TestCase
     public function test_multiple_targets_use_the_same_engine(): void
     {
         $post = new #[Slug(source: 'title')]
-        #[Slug(source: 'title', target: 'seo_slug', separator: '_', unique: false)] class extends Post
-        {
-        };
+        #[Slug(source: 'title', target: 'seo_slug', separator: '_', unique: false)] class extends Post {};
         $post->fill(['title' => 'Hello World', 'seo_title' => 'News'])->save();
 
         $this->assertSame('hello-world', $post->slug);
@@ -65,9 +61,7 @@ class AttributesTest extends TestCase
 
     public function test_options_and_source_updates(): void
     {
-        $post = new #[Slug(source: 'title', separator: '_', unique: false, on_update: true, max_length: 10, ascii_only: true, ascii_lang: 'en')] class extends Post
-        {
-        };
+        $post = new #[Slug(source: 'title', separator: '_', unique: false, on_update: true, max_length: 10, ascii_only: true, ascii_lang: 'en')] class extends Post {};
         $post->fill(['title' => 'Hello World'])->save();
         $this->assertSame('hello', $post->slug);
         $post->update(['title' => 'Hello News']);
@@ -76,18 +70,14 @@ class AttributesTest extends TestCase
 
     public function test_on_create_can_be_disabled(): void
     {
-        $post = new #[Slug(source: 'title', on_create: false)] class extends Post
-        {
-        };
+        $post = new #[Slug(source: 'title', on_create: false)] class extends Post {};
         $post->fill(['title' => 'Hello'])->save();
         $this->assertNull($post->slug);
     }
 
     public function test_include_trashed_checks_deleted_records(): void
     {
-        $post = new #[Slug(source: 'title', include_trashed: true)] class extends Post
-        {
-        };
+        $post = new #[Slug(source: 'title', include_trashed: true)] class extends Post {};
         $post->fill(['title' => 'Hello'])->save();
         $post->delete();
         $copy = new ($post::class)(['title' => 'Hello']);
@@ -97,12 +87,8 @@ class AttributesTest extends TestCase
 
     public function test_cache_is_per_class_and_does_not_freeze_defaults(): void
     {
-        $first = new #[Slug(source: 'title')] class extends Post
-        {
-        };
-        $second = new #[Slug(source: 'seo_title')] class extends Post
-        {
-        };
+        $first = new #[Slug(source: 'title')] class extends Post {};
+        $second = new #[Slug(source: 'seo_title')] class extends Post {};
         $first->fill(['title' => 'Hello World'])->save();
         $second->fill(['seo_title' => 'Other Value'])->save();
         $this->assertSame('hello-world', $first->slug);
@@ -117,9 +103,7 @@ class AttributesTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Duplicate Sluggable target: slug');
-        new #[Slug(source: 'title')] #[Slug(source: 'seo_title')] class extends Post
-        {
-        };
+        new #[Slug(source: 'title')] #[Slug(source: 'seo_title')] class extends Post {};
     }
 
     public function test_invalid_definitions_fail_clearly(): void
@@ -150,10 +134,6 @@ class AttributesTest extends TestCase
 }
 
 #[Slug(source: 'seo_title', target: 'seo_slug')]
-abstract class AttributeBasePost extends Post
-{
-}
+abstract class AttributeBasePost extends Post {}
 
-class AttributeChildPost extends AttributeBasePost
-{
-}
+class AttributeChildPost extends AttributeBasePost {}

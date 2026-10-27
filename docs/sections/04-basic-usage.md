@@ -1,6 +1,28 @@
 ## Basic Usage
 
-Add the `Sluggable` trait to your model and name the source attribute in the `$sluggable` property. The slug is written to the `slug` column.
+Add the `Sluggable` trait to your model and declare the source column with `#[Slug]`. The slug is written to the `slug` column.
+
+```php title="app/Post.php"
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Pharaonic\Laravel\Sluggable\Sluggable;
+use Pharaonic\Laravel\Sluggable\Attributes\Slug;
+
+#[Slug(source: 'title')]
+class Post extends Model
+{
+    use Sluggable;
+
+    protected $fillable = ['title'];
+}
+```
+
+See [PHP Attributes](#php-attributes) for additional options and configuration priority.
+
+### Using a Property
+
+You can also configure the same slug using the existing `$sluggable` property:
 
 ```php title="app/Models/Post.php"
 namespace App\Models;
@@ -17,6 +39,8 @@ class Post extends Model
     protected $sluggable = 'title';
 }
 ```
+
+### Creating Records
 
 Create records as usual. The slug is generated just before the insert:
 
@@ -74,5 +98,5 @@ Post::create(['title' => 'Hello World', 'slug' => 'custom-url'])->slug; // "cust
 ```
 
 :::info Direct Attributes Only
-The `$sluggable` property always reads a direct attribute of the model. `'category.name'` is not treated as a relation path. Use a [callable source](#callable-sources) for that.
+Both `#[Slug(source: 'title')]` and the `$sluggable` property read a direct attribute of the model. `'category.name'` is not treated as a relation path. Use a [callable source](#callable-sources) for that.
 :::

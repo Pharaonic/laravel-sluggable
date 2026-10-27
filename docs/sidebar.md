@@ -4,6 +4,7 @@
   - [Configuration](#configuration)
 - Usage
   - [Basic Usage](#basic-usage)
+  - [PHP Attributes](#php-attributes)
   - [Multiple Slugs](#multiple-slugs)
   - [Callable Sources](#callable-sources)
   - [Per-Slug Options](#per-slug-options)

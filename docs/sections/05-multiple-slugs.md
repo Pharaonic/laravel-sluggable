@@ -34,7 +34,7 @@ There is no limit on the number of slugs. Each one is generated on its own and c
 ### Method or Property
 
 :::warning Precedence
-When both `$sluggable` and `sluggable()` are defined, the `sluggable()` method always takes precedence. The two configurations are never merged.
+Configuration priority is `sluggable()` → [PHP Attributes](#php-attributes) → `$sluggable`. These configuration sources are never merged.
 :::
 
 ```php

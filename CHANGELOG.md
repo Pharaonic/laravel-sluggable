@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Repeatable model-level `Pharaonic\Sluggable\Attributes\Slug` attributes, using the existing slug engine and options.
+- Repeatable model-level `Pharaonic\Laravel\Sluggable\Attributes\Slug` attributes, using the existing slug engine and options.
 - Independent attribute slug targets, each with a single source column.
 - Method → attributes → property configuration priority, per-class declaration caching, and clear validation for invalid or duplicate attribute definitions.
 

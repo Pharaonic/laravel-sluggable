@@ -38,8 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Pharaonic\\Laravel\\Sluggable\\": "src/",
-            "Pharaonic\\Sluggable\\Attributes\\": "src/Attributes/"
+            "Pharaonic\\Laravel\\Sluggable\\": "src/"
         }
     },
     "autoload-dev": {
@@ -55,10 +54,10 @@
         }
     },
     "scripts": {
-        "test": "@php vendor/bin/phpunit",
-        "analyse": "@php vendor/bin/phpstan analyse --no-progress",
-        "style": "@php vendor/bin/pint --test",
-        "format": "@php vendor/bin/pint",
+        "test": "phpunit",
+        "analyse": "phpstan analyse --no-progress",
+        "style": "pint --test",
+        "format": "pint",
         "check": [
             "@style",
             "@analyse",

@@ -3,9 +3,9 @@
 namespace Pharaonic\Laravel\Sluggable\Tests\Feature;
 
 use InvalidArgumentException;
+use Pharaonic\Laravel\Sluggable\Attributes\Slug;
 use Pharaonic\Laravel\Sluggable\Tests\Fixtures\Post;
 use Pharaonic\Laravel\Sluggable\Tests\TestCase;
-use Pharaonic\Sluggable\Attributes\Slug;
 
 class AttributesTest extends TestCase
 {

@@ -27,4 +27,4 @@ labels:
   copied: Copied!
 ---
 
-Slugs for Eloquent, zero setup. Add `protected $sluggable = 'title';` and `Hello World` becomes `hello-world`, then `hello-world-2`, or fill as many slug columns as you need with `sluggable()`.
+Slugs for Eloquent, zero setup. Add `#[Slug(source: 'title')]` to your model using the `Sluggable` trait and `Hello World` becomes `hello-world`, then `hello-world-2`. Define multiple slug columns with repeatable attributes or `sluggable()`. Existing property and callable source configuration stays supported.
